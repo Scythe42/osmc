@@ -1,0 +1,23 @@
+diff --git a/xbmc/utils/StreamDetails.cpp b/xbmc/utils/StreamDetails.cpp
+index bf2dd8a499..841a407662 100644
+--- a/xbmc/utils/StreamDetails.cpp
++++ b/xbmc/utils/StreamDetails.cpp
+@@ -563,12 +563,18 @@ std::string CStreamDetails::VideoDimsToResolutionDescription(int iWidth, int iHe
+   // 960x540 (sometimes 544 which is multiple of 16)
+   else if (iWidth <= 960 && iHeight <= 544)
+     return "540";
++  // 1024x576 PAL 16:9 square pixels
++  else if (iWidth <= 1024 && iHeight <= 576)
++    return "576";
+   // 1280x720
+   else if (iWidth <= 1280 && iHeight <= 720)
+     return "720";
+   // 1920x1080
+   else if (iWidth <= 1920 && iHeight <= 1080)
+     return "1080";
++  // some BDs are larger than 1080 (e.g. Band of Brothers)
++  else if (iWidth <= 1920 && iHeight <= 1084)
++    return "1080";
+   // 4K
+   else if (iWidth <= 4096 && iHeight <= 2160)
+     return "4K";
