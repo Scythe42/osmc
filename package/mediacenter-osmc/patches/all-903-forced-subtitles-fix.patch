@@ -1,0 +1,13 @@
+diff --git a/xbmc/cores/VideoPlayer/VideoPlayer.cpp b/xbmc/cores/VideoPlayer/VideoPlayer.cpp
+index d8840ce440..8f20c1c052 100644
+--- a/xbmc/cores/VideoPlayer/VideoPlayer.cpp
++++ b/xbmc/cores/VideoPlayer/VideoPlayer.cpp
+@@ -129,6 +129,8 @@ public:
+     {
+       if ((ss.flags & StreamFlags::FLAG_FORCED) && g_LangCodeExpander.CompareISO639Codes(ss.language, audiolang))
+         return false;
++      else if ((ss.flags & StreamFlags::FLAG_FORCED) && (ss.flags & StreamFlags::FLAG_DEFAULT) && (g_LangCodeExpander.CompareISO639Codes(ss.language, g_langInfo.GetAudioLanguage())))
++        return false;
+       else
+         return true;
+     }
