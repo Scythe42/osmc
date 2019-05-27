@@ -1,0 +1,15 @@
+diff --git a/xbmc/windows/GUIMediaWindow.cpp b/xbmc/windows/GUIMediaWindow.cpp
+index 45e935cd9f..f6b248621f 100644
+--- a/xbmc/windows/GUIMediaWindow.cpp
++++ b/xbmc/windows/GUIMediaWindow.cpp
+@@ -743,8 +743,8 @@ bool CGUIMediaWindow::GetDirectory(const std::string &strDirectory, CFileItemLis
+     items.Assign(dirItems);
+ 
+     // took over a second, and not normally cached, so cache it
+-    if ((XbmcThreads::SystemClockMillis() - time) > 1000  && items.CacheToDiscIfSlow())
+-      items.Save(GetID());
++//    if ((XbmcThreads::SystemClockMillis() - time) > 1000  && items.CacheToDiscIfSlow())
++//      items.Save(GetID());
+ 
+     // if these items should replace the current listing, then pop it off the top
+     if (items.GetReplaceListing())
