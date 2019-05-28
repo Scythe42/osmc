@@ -1,0 +1,16 @@
+diff --git a/xbmc/SeekHandler.cpp b/xbmc/SeekHandler.cpp
+index 674249c678..165899b62c 100644
+--- a/xbmc/SeekHandler.cpp
++++ b/xbmc/SeekHandler.cpp
+@@ -189,6 +189,11 @@ void CSeekHandler::SetSeekSize(double seekSize)
+   int64_t playTime = player.GetTime();
+   double minSeekSize = (player.GetMinTime() - playTime) / 1000.0;
+   double maxSeekSize = (player.GetMaxTime() - playTime) / 1000.0;
++  
++  // do not allow to skip to the end of a video stream initially to avoid stopping playback by accident
++  if (playTime <= (player.GetMaxTime() - 60000.0)) {
++	  maxSeekSize -= 60.0;
++  }
+ 
+   m_seekSize = seekSize > 0
+     ? std::min(seekSize, maxSeekSize)
